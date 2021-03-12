@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <script type="text/javascript">
+
+      function checkResult() {
+        const computerResult = document.getElementById('computer').textContent;
+        const userResult = document.getElementById('user').textContent;
+
+        if (userResult === computerResult) {
+          window.alert("Draw!");
+        } else if (userResult === "scissors" && computerResult === "paper") {
+          setTimeout(() => window.alert("You won!"));
+        } else if (userResult === "scissors" && computerResult === "stone") {
+          setTimeout(() => window.alert("You lost!"));
+        } else if (userResult === "paper" && computerResult === "stone") {
+          setTimeout(() => window.alert("You won!"));
+        } else if (userResult === "paper" && computerResult === "scissors") {
+          setTimeout(() => window.alert("You lost!"));
+        } else if (userResult === "stone" && computerResult === "scissors") {
+          setTimeout(() => window.alert("You won!"));
+        } else if (userResult === "stone" && computerResult === "paper") {
+          setTimeout(() => window.alert("You lost!"));
+        }
+      }
+
+      function computerRandom() {
+        let n = Math.floor(Math.random() * 3);
+
+        if (n === 0) {
+          document.getElementById('computer').textContent = "scissors";
+        } else if (n === 1) {
+          document.getElementById('computer').textContent = "paper";
+        } else {
+          document.getElementById('computer').textContent = "stone";
+        }
+      }
+
+      function play(chosenItem) {
+        document.getElementById('user').textContent = chosenItem;
+        computerRandom();
+        checkResult();
+      }
+
+      window.onload = () => {
+        document.getElementById('user-choice-scissors').addEventListener('click', () => play('scissors'));
+        document.getElementById('user-choice-paper').addEventListener('click', () => play('paper'));
+        document.getElementById('user-choice-stone').addEventListener('click', () => play('stone'));
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <div style="width: 500px; background-color: pink; text-align: center; padding: 50px 0;">
+      COMPUTER
+    </div>
+
+    <table style="width: 500px; height: 150px; table-layout: fixed;">
+      <tr>
+        <th id="computer" style="background-color: pink;"> - </th>
+        <th id="user" style="background-color: skyblue;"> - </th>
+      </tr>
+    </table>
+
+    <div style="width: 500px; background-color: skyblue; text-align: center; padding: 50px 0;">
+      YOU
+    </div>
+
+    </br>
+
+    <table style="width: 500px; height: 150px; table-layout: fixed;">
+      <tr>
+        <th id="user-choice-scissors" style="background-color: blue;" >Scissors</th>
+        <th id="user-choice-paper" style="background-color: green;">Paper</th>
+        <th id="user-choice-stone" style="background-color: yellow;">Stone</th>
+      </tr>
+    </table>
+  </body>
+</html>
+
